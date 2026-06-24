@@ -70,32 +70,20 @@ html, body {
   flex-shrink: 0;
 }
 
-.header-icon-obj {
+.header-icons img {
   display: block;
-  width: 40px;
-  height: 40px;
-  border: none;
-  pointer-events: none;
-  overflow: hidden;
 }
 
 /* ---- Quick actions ---- */
 .quick-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 8px;
   padding: 0 16px 8px;
 }
 
-.action-item {
+.quick-actions img {
   display: block;
-  flex: 1;
-  min-width: 0;
-  width: 100%;
-  height: auto;
-  border: none;
-  pointer-events: none;
-  overflow: hidden;
 }
 
 /* ---- Section header ---- */
@@ -140,12 +128,8 @@ html, body {
 .task-img {
   display: block;
   width: 100%;
-  height: auto;
   border: none;
   pointer-events: none;
-}
-
-object.task-img {
   overflow: hidden;
 }
 
@@ -156,13 +140,10 @@ object.task-img {
   padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
-.bottom-nav-obj {
+.bottom-nav img {
   display: block;
   width: 100%;
   height: auto;
-  border: none;
-  pointer-events: none;
-  overflow: hidden;
 }
 
 /* ==================== RESPONSIVE ==================== */

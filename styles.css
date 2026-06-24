@@ -1,5 +1,10 @@
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
 html, body {
   font-family: 'HarmonyOS Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: #EFF3F7;
@@ -11,7 +16,8 @@ html, body {
 }
 
 .phone-frame {
-  width: 375px;
+  width: 100%;
+  max-width: 375px;
   margin: 0 auto;
   height: 100vh;
   background: #EFF3F7;
@@ -171,8 +177,14 @@ html, body {
 /* card = 343px = 375 - 16*2 */
 .task-img {
   display: block;
-  width: 343px;
+  width: 100%;
+  max-width: 343px;
   height: auto;
+  image-rendering: -webkit-optimize-contrast;
+  shape-rendering: geometricPrecision;
+  text-rendering: optimizeLegibility;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 /* ==================== BOTTOM NAV ==================== */
@@ -184,18 +196,37 @@ html, body {
 
 .bottom-nav img {
   display: block;
-  width: 375px;
+  width: 100%;
+  max-width: 375px;
   height: auto;
+  margin: 0 auto;
 }
 
 /* ==================== RESPONSIVE ==================== */
 
-@media screen and (max-width: 375px) {
-  .phone-frame { width: 100%; }
-  .bottom-nav img { width: 100%; }
-  .task-img { width: calc(100% - 32px); }
-}
-
 @media screen and (min-width: 376px) {
   .phone-frame { box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+}
+
+/* iOS SVG 渲染优化，防止滚动时模糊 */
+@supports (-webkit-touch-callout: none) {
+  .scroll-content {
+    -webkit-overflow-scrolling: auto;
+  }
+  
+  .task-list {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+  }
+  
+  .task-img {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
 }

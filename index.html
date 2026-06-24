@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>護理協作APP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="phone-frame">
+  <header class="sticky-header">
+    <div class="status-bar">
+      <div class="status-left">
+        <span class="status-time">9:30</span>
+        <span class="status-date">Tue, Jul 19</span>
+      </div>
+      <div class="status-right">
+        <svg width="14" height="10" viewBox="0 0 14 11" fill="none"><rect x="0" y="6" width="2.5" height="4" rx="0.5" fill="#4B3F42"/><rect x="3.5" y="3.5" width="2.5" height="6.5" rx="0.5" fill="#4B3F42"/><rect x="7" y="1.5" width="2.5" height="8.5" rx="0.5" fill="#4B3F42"/><rect x="10.5" y="0" width="2.5" height="10" rx="0.5" fill="#4B3F42"/></svg>
+        <svg width="15" height="12" viewBox="0 0 15 12" fill="none"><circle cx="7.5" cy="10" r="1" fill="#4B3F42"/><path d="M5 8a3.5 3.5 0 0 1 5 0" stroke="#4B3F42" stroke-width="1.2" stroke-linecap="round"/><path d="M2.5 5.5a7 7 0 0 1 10 0" stroke="#4B3F42" stroke-width="1.2" stroke-linecap="round"/><path d="M0 3a10.5 10.5 0 0 1 15 0" stroke="#4B3F42" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <svg width="23" height="12" viewBox="0 0 23 12" fill="none"><rect x="0.5" y="0.5" width="19" height="11" rx="2.5" stroke="#4B3F42" stroke-opacity=".35"/><rect x="2" y="2" width="16" height="8" rx="1.5" fill="#4B3F42"/><rect x="20" y="3.5" width="2.5" height="5" rx="1.25" fill="#4B3F42" opacity=".4"/></svg>
+        <span class="status-battery-text">Until 10:00 AM</span>
+      </div>
+    </div>
+    <div class="header-row">
+      <h1 class="greeting">👋 Ｈi {護理師名稱}</h1>
+      <div class="header-icons">
+        <img src="icons/header-icon-camera.svg" alt="camera" width="45" height="40">
+        <img src="icons/header-icon-scan.svg" alt="scan" width="40" height="40">
+        <img src="icons/header-icon-msg.svg" alt="messages" width="40" height="40">
+      </div>
+    </div>
+    <div class="quick-actions">
+      <img src="icons/action-medication.svg" alt="藥品配送" width="80" height="98">
+      <img src="icons/action-specimen.svg" alt="檢體取送" width="80" height="98">
+      <img src="icons/action-education.svg" alt="護理衛教" width="80" height="98">
+      <img src="icons/action-environment.svg" alt="環境介紹" width="80" height="98">
+    </div>
+    <div class="section-header">
+      <h2 class="section-title">最近的派工</h2>
+      <a href="#" class="view-all">查看全部</a>
+    </div>
+  </header>
+
+  <div class="scroll-content">
+    <div class="task-list">
+      <img class="task-img" src="icons/task-completed-component.svg" alt="藥品任務">
+      <img class="task-img" src="icons/task-aborted-component.svg" alt="藥品任務">
+      <img class="task-img task-divider" src="icons/divider-frame.svg" alt="">
+      <img class="task-img" src="icons/task-active.svg" alt="正在領取藥品">
+      <img class="task-img" src="icons/task-specimen.svg" alt="檢體取送">
+      <img class="task-img" src="icons/task-pending1.svg" alt="藥品配送">
+      <img class="task-img" src="icons/task-pending2.svg" alt="藥品配送">
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <img src="icons/bottom-nav.svg" alt="navigation" width="375" height="100">
+  </nav>
+</div>
+
+<script>
+(function() {
+  var scrollEl = document.querySelector('.scroll-content');
+  var headerEl = document.querySelector('.sticky-header');
+  if (!scrollEl || !headerEl) return;
+  scrollEl.addEventListener('scroll', function() {
+    if (scrollEl.scrollTop > 0) {
+      headerEl.classList.add('scrolled');
+    } else {
+      headerEl.classList.remove('scrolled');
+    }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
 html, body {
+  width: 100%;
   font-family: 'HarmonyOS Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: #EFF3F7;
   color: #1F2124;
@@ -153,7 +154,6 @@ html, body {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
 }
 
 .task-list {
@@ -169,6 +169,12 @@ html, body {
   width: 100%;
   max-width: 343px;
   height: auto;
+  border: none;
+  pointer-events: none;
+}
+
+object.task-img {
+  overflow: hidden;
 }
 
 /* ==================== BOTTOM NAV ==================== */
@@ -185,7 +191,7 @@ html, body {
 
 /* ==================== RESPONSIVE ==================== */
 
-@media screen and (min-width: 376px) {
+@media screen and (min-width: 430px) {
   .phone-frame {
     max-width: 375px;
     margin: 0 auto;

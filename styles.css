@@ -123,15 +123,14 @@ html, body {
 .task-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   padding: 16px 16px 12px;
-  align-items: center;
+  align-items: stretch;
 }
 
 .task-img {
   display: block;
   width: 100%;
-  max-width: 343px;
   height: auto;
   border: none;
   pointer-events: none;

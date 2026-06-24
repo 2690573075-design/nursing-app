@@ -162,7 +162,14 @@ html, body {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: auto;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  will-change: scroll-position;
 }
 
 /* card gap=12px, horizontal pad=16px, bottom pad=12px */
@@ -172,6 +179,10 @@ html, body {
   gap: 12px;
   padding: 16px 16px 12px;
   align-items: center;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 /* card = 343px = 375 - 16*2 */
@@ -181,10 +192,16 @@ html, body {
   max-width: 343px;
   height: auto;
   image-rendering: -webkit-optimize-contrast;
-  shape-rendering: geometricPrecision;
-  text-rendering: optimizeLegibility;
+  shape-rendering: crispEdges;
+  text-rendering: geometricPrecision;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  will-change: transform;
+  contain: layout style paint;
 }
 
 /* ==================== BOTTOM NAV ==================== */
@@ -208,25 +225,3 @@ html, body {
   .phone-frame { box-shadow: 0 0 20px rgba(0,0,0,0.1); }
 }
 
-/* iOS SVG 渲染优化，防止滚动时模糊 */
-@supports (-webkit-touch-callout: none) {
-  .scroll-content {
-    -webkit-overflow-scrolling: auto;
-  }
-  
-  .task-list {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-perspective: 1000px;
-    perspective: 1000px;
-  }
-  
-  .task-img {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-}

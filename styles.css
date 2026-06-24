@@ -67,26 +67,35 @@ html, body {
   display: flex;
   gap: 16px;
   align-items: center;
+  flex-shrink: 0;
 }
 
-.header-icons img {
+.header-icon-obj {
   display: block;
   width: 40px;
   height: 40px;
+  border: none;
+  pointer-events: none;
+  overflow: hidden;
 }
 
 /* ---- Quick actions ---- */
 .quick-actions {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 8px;
   padding: 0 16px 8px;
 }
 
-.quick-actions img {
+.action-item {
   display: block;
-  width: 80px;
-  height: 98px;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  height: auto;
+  border: none;
+  pointer-events: none;
+  overflow: hidden;
 }
 
 /* ---- Section header ---- */
@@ -147,10 +156,13 @@ object.task-img {
   padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
-.bottom-nav img {
+.bottom-nav-obj {
   display: block;
   width: 100%;
   height: auto;
+  border: none;
+  pointer-events: none;
+  overflow: hidden;
 }
 
 /* ==================== RESPONSIVE ==================== */

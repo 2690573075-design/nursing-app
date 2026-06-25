@@ -218,6 +218,8 @@
   function scrollToActiveCard() {
     if (!activeCard || !homeScrollEl) return;
 
+    homeScrollEl.scrollTop = 0;
+
     function tryScroll(attempt) {
       if (activeCard.offsetHeight < 10 && attempt < 20) {
         setTimeout(function() { tryScroll(attempt + 1); }, 100);
@@ -230,8 +232,7 @@
           var containerRect = homeScrollEl.getBoundingClientRect();
           var cardCenter = cardRect.top + cardRect.height / 2;
           var containerCenter = containerRect.top + containerRect.height / 2;
-          var offsetY = cardCenter - containerCenter;
-          homeScrollEl.scrollBy({ top: offsetY, behavior: 'smooth' });
+          homeScrollEl.scrollTo({ top: cardCenter - containerCenter, behavior: 'smooth' });
           hasScrolledToActive = true;
         });
       });

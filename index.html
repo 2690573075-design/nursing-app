@@ -217,24 +217,29 @@
 
   function scrollToActiveCard() {
     if (!activeCard || !homeScrollEl) return;
-    var cardTop = activeCard.offsetTop;
-    var cardHeight = activeCard.offsetHeight;
-    var containerHeight = homeScrollEl.clientHeight;
-    var maxScroll = homeScrollEl.scrollHeight - containerHeight;
 
-    if (containerHeight <= 0) return;
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        var cardTop = activeCard.offsetTop;
+        var cardHeight = activeCard.offsetHeight;
+        var containerHeight = homeScrollEl.clientHeight;
+        var maxScroll = homeScrollEl.scrollHeight - containerHeight;
 
-    var ideal = cardTop - (containerHeight / 2) + (cardHeight / 2);
+        if (containerHeight <= 0 || cardHeight <= 0) return;
 
-    if (cardHeight > containerHeight) {
-      ideal = cardTop;
-    }
+        var ideal = cardTop - (containerHeight / 2) + (cardHeight / 2);
 
-    if (ideal < 0) ideal = 0;
-    if (ideal > maxScroll) ideal = maxScroll;
+        if (cardHeight > containerHeight) {
+          ideal = cardTop;
+        }
 
-    homeScrollEl.scrollTo({ top: ideal, behavior: 'smooth' });
-    hasScrolledToActive = true;
+        if (ideal < 0) ideal = 0;
+        if (ideal > maxScroll) ideal = maxScroll;
+
+        homeScrollEl.scrollTo({ top: ideal, behavior: 'smooth' });
+        hasScrolledToActive = true;
+      });
+    });
   }
 
   function switchPage(pageName) {

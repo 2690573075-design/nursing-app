@@ -226,52 +226,59 @@
 
 <script>
 (function() {
+  var pageHome = document.getElementById('page-home');
+  var pageTaskList = document.getElementById('page-task-list');
   var navItems = document.querySelectorAll('.nav-item');
-  var panels = {
-    home: document.getElementById('page-home'),
-    'task-list': document.getElementById('page-task-list')
-  };
 
   function switchPage(pageName) {
-    Object.keys(panels).forEach(function(key) {
-      if (panels[key]) {
-        panels[key].classList.toggle('active', key === pageName);
-      }
-    });
+    if (pageName === 'home') {
+      pageHome.classList.add('active');
+      pageTaskList.classList.remove('active');
+    } else if (pageName === 'task-list') {
+      pageHome.classList.remove('active');
+      pageTaskList.classList.add('active');
+    }
 
     navItems.forEach(function(item) {
       var isActive = item.getAttribute('data-page') === pageName;
-      item.classList.toggle('active', isActive);
+      if (isActive) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
     });
 
-    var scrollEl = document.querySelector('#' + pageName + ' .scroll-content, #page-' + pageName + ' .scroll-content');
-    var activePanel = panels[pageName];
-    if (activePanel) {
-      var scrollContent = activePanel.querySelector('.scroll-content');
-      if (scrollContent) {
-        scrollContent.scrollTop = 0;
-      }
+    var targetPanel = pageName === 'home' ? pageHome : pageTaskList;
+    var scrollContent = targetPanel.querySelector('.scroll-content');
+    if (scrollContent) {
+      scrollContent.scrollTop = 0;
     }
   }
 
+  function onNavClick() {
+    var page = this.getAttribute('data-page');
+    if (page === 'my') return;
+    switchPage(page);
+  }
+
   navItems.forEach(function(item) {
-    item.addEventListener('click', function() {
-      var page = this.getAttribute('data-page');
-      if (page === 'my') return;
-      switchPage(page);
+    item.addEventListener('click', onNavClick);
+    item.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      onNavClick.call(this);
     });
   });
 
-  var homeScrollEl = document.querySelector('#page-home .scroll-content');
-  var homeHeaderEl = document.querySelector('#page-home .home-header');
+  var homeScrollEl = pageHome.querySelector('.scroll-content');
+  var homeHeaderEl = pageHome.querySelector('.home-header');
   if (homeScrollEl && homeHeaderEl) {
     homeScrollEl.addEventListener('scroll', function() {
       homeHeaderEl.classList.toggle('scrolled', homeScrollEl.scrollTop > 0);
     });
   }
 
-  var tasklistScrollEl = document.querySelector('#page-task-list .scroll-content');
-  var tasklistHeaderEl = document.querySelector('#page-task-list .tasklist-header');
+  var tasklistScrollEl = pageTaskList.querySelector('.scroll-content');
+  var tasklistHeaderEl = pageTaskList.querySelector('.tasklist-header');
   if (tasklistScrollEl && tasklistHeaderEl) {
     tasklistScrollEl.addEventListener('scroll', function() {
       tasklistHeaderEl.classList.toggle('scrolled', tasklistScrollEl.scrollTop > 0);

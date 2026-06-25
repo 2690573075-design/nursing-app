@@ -197,29 +197,10 @@
 
   <!-- ==================== 共用底部導航 ==================== -->
   <nav class="bottom-nav">
-    <div class="nav-item active" data-page="home">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-        <path d="M4 12L16 2L28 12V26C28 27.0609 27.5786 28.0783 26.8284 28.8284C26.0783 29.5786 25.0609 30 24 30H8C6.93913 30 5.92172 29.5786 5.17157 28.8284C4.42143 28.0783 4 27.0609 4 26V12Z" stroke="#999999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M12 30V18H20V30" stroke="#999999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span>首頁</span>
-    </div>
-    <div class="nav-item" data-page="task-list">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-        <rect x="4" y="3" width="24" height="27" rx="4" stroke="#999999" stroke-width="2"/>
-        <path d="M9 11H23" stroke="#999999" stroke-width="2" stroke-linecap="round"/>
-        <path d="M9 17H23" stroke="#999999" stroke-width="2" stroke-linecap="round"/>
-        <path d="M9 23H17" stroke="#999999" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      <span>派工列表</span>
-    </div>
-    <div class="nav-item" data-page="my">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-        <circle cx="16" cy="10" r="6" stroke="#999999" stroke-width="2"/>
-        <path d="M28 28C28 24.134 24.4183 21 20 21H12C7.58172 21 4 24.134 4 28" stroke="#999999" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      <span>我的</span>
-    </div>
+    <img class="nav-bg" src="icons/bottom-nav.svg" alt="navigation" width="375" height="100">
+    <div class="nav-hit-area" data-page="home"></div>
+    <div class="nav-hit-area" data-page="task-list"></div>
+    <div class="nav-hit-area" data-page="my"></div>
   </nav>
 
 </div>
@@ -228,25 +209,19 @@
 (function() {
   var pageHome = document.getElementById('page-home');
   var pageTaskList = document.getElementById('page-task-list');
-  var navItems = document.querySelectorAll('.nav-item');
+  var navItems = document.querySelectorAll('.nav-hit-area');
+  var navBg = document.querySelector('.nav-bg');
 
   function switchPage(pageName) {
     if (pageName === 'home') {
       pageHome.classList.add('active');
       pageTaskList.classList.remove('active');
+      navBg.src = 'icons/bottom-nav.svg';
     } else if (pageName === 'task-list') {
       pageHome.classList.remove('active');
       pageTaskList.classList.add('active');
+      navBg.src = 'icons/bottom-nav-tasklist.svg';
     }
-
-    navItems.forEach(function(item) {
-      var isActive = item.getAttribute('data-page') === pageName;
-      if (isActive) {
-        item.classList.add('active');
-      } else {
-        item.classList.remove('active');
-      }
-    });
 
     var targetPanel = pageName === 'home' ? pageHome : pageTaskList;
     var scrollContent = targetPanel.querySelector('.scroll-content');

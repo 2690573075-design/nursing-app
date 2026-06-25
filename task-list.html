@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>派工列表</title>
+  <link rel="stylesheet" href="task-list-styles.css">
+</head>
+<body>
+  <div class="phone-frame">
+    <header class="sticky-header">
+      <div class="header-bar">
+        <button class="back-btn" aria-label="返回">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="#1F2124" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="header-date">
+          <div class="date-today">今日</div>
+          <div class="date-full">10/31 (四)</div>
+        </div>
+        <button class="forward-btn" aria-label="前进">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18L15 12L9 6" stroke="#1F2124" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="filter-tabs">
+        <button class="tab active">全部(9)</button>
+        <button class="tab">待執行(3)</button>
+        <button class="tab">執行中(3)</button>
+        <button class="tab">已結束(3)</button>
+      </div>
+    </header>
+
+    <div class="scroll-content">
+      <div class="task-list">
+        <div class="shift-section">
+          <div class="shift-header">
+            <span class="shift-icon">☀️</span>
+            <span class="shift-name">白班</span>
+          </div>
+          <div class="shift-desc">你工作時段的派工</div>
+        </div>
+
+        <div class="task-card task-done">
+          <div class="task-top">
+            <span class="task-title">藥品配送</span>
+            <span class="task-source">勤務派工 (系統)</span>
+          </div>
+          <div class="task-bottom">
+            <span class="task-status">於 10:20 結束</span>
+          </div>
+        </div>
+
+        <div class="task-card task-done">
+          <div class="task-top">
+            <span class="task-title">檢體取送</span>
+            <span class="task-source">你派工 (系統)</span>
+          </div>
+          <div class="task-bottom">
+            <span class="task-status">於 10:00 任務終止執行</span>
+          </div>
+        </div>
+
+        <div class="task-card task-active">
+          <div class="task-header">
+            <span class="task-title">藥品配送</span>
+            <span class="task-source">勤務派工 (系統)</span>
+          </div>
+          <div class="task-progress-section">
+            <div class="progress-title">正在領取藥品</div>
+            <div class="progress-desc">護理師正在領取藥品</div>
+          </div>
+          <div class="progress-bar-wrapper">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 50%"></div>
+            </div>
+            <div class="progress-locations">
+              <span>護理站</span>
+              <span>A-2</span>
+              <span>護理站</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-card task-active">
+          <div class="task-header">
+            <span class="task-title">檢體取送</span>
+            <span class="task-source">你派工 (系統)</span>
+          </div>
+          <div class="task-progress-section">
+            <div class="progress-title">請前往 B-1 區交付檢體</div>
+            <div class="progress-desc">請儘速前來，避免機器人超時離去</div>
+          </div>
+          <div class="progress-bar-wrapper">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 50%"></div>
+            </div>
+            <div class="progress-locations">
+              <span>檢體站</span>
+              <span>B-1</span>
+              <span>檢體站</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="shift-divider">
+          <div class="divider-line"></div>
+          <span class="divider-text">因轉換班別，不執行派工記錄 (4)</span>
+          <div class="divider-line"></div>
+        </div>
+
+        <div class="task-card task-disabled">
+          <div class="task-top">
+            <span class="task-title">環境介紹-帶入病室</span>
+          </div>
+          <div class="task-bottom">
+            <span class="task-status">無法執行派工，請自行執行環境介紹</span>
+          </div>
+        </div>
+
+        <div class="task-card task-disabled">
+          <div class="task-top">
+            <span class="task-title">檢體取送</span>
+          </div>
+          <div class="task-bottom">
+            <span class="task-status">無法執行派工，請自行將檢體送往檢體站</span>
+          </div>
+        </div>
+
+        <div class="task-card task-disabled">
+          <div class="task-top">
+            <span class="task-title">藥品配送</span>
+          </div>
+          <div class="task-bottom">
+            <span class="task-status">無法執行派工，請自行前往護理站領藥</span>
+          </div>
+        </div>
+
+        <div class="task-card task-disabled">
+          <div class="task-top">
+            <span class="task-title">護理衛教</span>
+          </div>
+          <div class="task-bottom">
+            <span class="task-status">無法執行派工，請重新預約衛教</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom-nav">
+      <div class="nav-item">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M4 12L16 2L28 12V26C28 27.0609 27.5786 28.0783 26.8284 28.8284C26.0783 29.5786 25.0609 30 24 30H8C6.93913 30 5.92172 29.5786 5.17157 28.8284C4.42143 28.0783 4 27.0609 4 26V12Z" stroke="#999999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 30V18H20V30" stroke="#999999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>首頁</span>
+      </div>
+      <div class="nav-item active">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect x="4" y="2" width="24" height="28" rx="4" stroke="#167EFF" stroke-width="2"/>
+          <path d="M9 10H23" stroke="#167EFF" stroke-width="2" stroke-linecap="round"/>
+          <path d="M9 16H23" stroke="#167EFF" stroke-width="2" stroke-linecap="round"/>
+          <path d="M9 22H17" stroke="#167EFF" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>派工列表</span>
+      </div>
+      <div class="nav-item">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="10" r="6" stroke="#999999" stroke-width="2"/>
+          <path d="M28 28C28 24.134 24.4183 21 20 21H12C7.58172 21 4 24.134 4 28" stroke="#999999" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>我的</span>
+      </div>
+    </nav>
+  </div>
+</body>
+</html>

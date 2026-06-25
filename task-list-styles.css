@@ -1,0 +1,353 @@
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  width: 100%;
+  font-family: 'HarmonyOS Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #EFF3F7;
+  color: #1F2124;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  overflow: hidden;
+}
+
+.phone-frame {
+  width: 100%;
+  height: 100dvh;
+  height: 100vh;
+  background: #EFF3F7;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-top: env(safe-area-inset-top);
+}
+
+@supports (padding-top: env(safe-area-inset-top)) {
+  .phone-frame {
+    height: calc(100vh - env(safe-area-inset-bottom));
+  }
+}
+
+/* ==================== STICKY HEADER ==================== */
+
+.sticky-header {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+  background: #E2ECF9;
+  box-shadow: none;
+  transition: box-shadow 0.15s ease;
+}
+
+.sticky-header.scrolled {
+  box-shadow: 0px 2px 6px rgba(29, 118, 202, 0.12);
+}
+
+/* ---- Header bar ---- */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+}
+
+.back-btn, .forward-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.header-date {
+  text-align: center;
+  flex: 1;
+}
+
+.date-today {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #1F2124;
+}
+
+.date-full {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #1F2124;
+}
+
+/* ---- Filter tabs ---- */
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.filter-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  flex-shrink: 0;
+  padding: 6px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  color: #666666;
+  background: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab.active {
+  background: #167EFF;
+  color: #FFFFFF;
+}
+
+/* ==================== SCROLL CONTENT ==================== */
+
+.scroll-content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 16px 12px;
+  align-items: stretch;
+}
+
+/* ---- Shift section ---- */
+
+.shift-section {
+  text-align: center;
+  padding: 8px 0 4px;
+}
+
+.shift-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.shift-icon {
+  font-size: 16px;
+}
+
+.shift-name {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  color: #333333;
+}
+
+.shift-desc {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #333333;
+}
+
+/* ---- Task cards ---- */
+
+.task-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 16px;
+  width: 100%;
+}
+
+.task-card.task-done {
+  padding: 16px;
+}
+
+.task-card.task-active {
+  background: linear-gradient(180deg, #167EFF 0%, #0D6FE8 100%);
+  padding: 0;
+  overflow: hidden;
+}
+
+.task-card.task-disabled {
+  opacity: 0.6;
+}
+
+.task-top, .task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.task-card.task-active .task-header {
+  padding: 12px 16px 0;
+  margin-bottom: 0;
+}
+
+.task-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #1F2124;
+}
+
+.task-card.task-active .task-title {
+  color: #FFFFFF;
+}
+
+.task-source {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #666666;
+}
+
+.task-card.task-active .task-source {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.task-bottom {
+  display: flex;
+  align-items: center;
+}
+
+.task-status {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #666666;
+}
+
+.task-card.task-done .task-status {
+  color: #666666;
+}
+
+/* ---- Active task progress ---- */
+
+.task-progress-section {
+  padding: 8px 16px 12px;
+}
+
+.progress-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+}
+
+.progress-desc {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.progress-bar-wrapper {
+  padding: 0 12px 16px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #FFFFFF;
+  border-radius: 4px;
+  position: relative;
+}
+
+.progress-locations {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ---- Shift divider ---- */
+
+.shift-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: #D9D9D9;
+}
+
+.divider-text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+/* ==================== BOTTOM NAVIGATION ==================== */
+
+.bottom-nav {
+  flex-shrink: 0;
+  background: #FFFFFF;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 8px 0 0;
+  padding-bottom: calc(8px + env(safe-area-inset-bottom));
+  box-shadow: 0px -1px 8px rgba(0, 0, 0, 0.06);
+  z-index: 10;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  cursor: pointer;
+  flex: 1;
+}
+
+.nav-item svg {
+  display: block;
+}
+
+.nav-item span {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  color: #999999;
+}
+
+.nav-item.active span {
+  color: #167EFF;
+  font-weight: 500;
+}

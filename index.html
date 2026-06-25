@@ -216,27 +216,11 @@
   var hasScrolledToActive = false;
 
   function scrollToActiveCard() {
-    if (!activeCard || !homeScrollEl) return;
+    if (!activeCard) return;
 
     requestAnimationFrame(function() {
       requestAnimationFrame(function() {
-        var cardTop = activeCard.offsetTop;
-        var cardHeight = activeCard.offsetHeight;
-        var containerHeight = homeScrollEl.clientHeight;
-        var maxScroll = homeScrollEl.scrollHeight - containerHeight;
-
-        if (containerHeight <= 0 || cardHeight <= 0) return;
-
-        var ideal = cardTop - (containerHeight / 2) + (cardHeight / 2);
-
-        if (cardHeight > containerHeight) {
-          ideal = cardTop;
-        }
-
-        if (ideal < 0) ideal = 0;
-        if (ideal > maxScroll) ideal = maxScroll;
-
-        homeScrollEl.scrollTo({ top: ideal, behavior: 'smooth' });
+        activeCard.scrollIntoView({ block: 'center', behavior: 'smooth' });
         hasScrolledToActive = true;
       });
     });

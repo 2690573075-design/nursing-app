@@ -208,6 +208,7 @@ html, body {
 /* ==================== SCROLLABLE CONTENT ==================== */
 
 .scroll-content {
+  position: relative;
   flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;

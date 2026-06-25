@@ -9,61 +9,274 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>護理協作APP</title>
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
 
 <div class="phone-frame">
-  <header class="sticky-header">
-    <div class="header-row">
-      <h1 class="greeting">👋 Ｈi {護理師名稱}</h1>
-      <div class="header-icons">
-        <img src="icons/header-icon-camera.svg" alt="camera" width="45" height="41">
-        <img src="icons/header-icon-scan.svg" alt="scan" width="40" height="40">
-        <img src="icons/header-icon-msg.svg" alt="messages" width="40" height="40">
-      </div>
-    </div>
-    <div class="quick-actions">
-      <img src="icons/action-medication.svg" alt="藥品配送" width="80" height="98">
-      <img src="icons/action-specimen.svg" alt="檢體取送" width="80" height="98">
-      <img src="icons/action-education.svg" alt="護理衛教" width="80" height="98">
-      <img src="icons/action-environment.svg" alt="環境介紹" width="80" height="98">
-    </div>
-    <div class="section-header">
-      <h2 class="section-title">最近的派工</h2>
-      <a href="#" class="view-all">查看全部</a>
-    </div>
-  </header>
 
-  <div class="scroll-content">
-    <div class="task-list">
-      <object class="task-img" data="icons/task-completed-component.svg" type="image/svg+xml" aria-label="藥品任務"></object>
-      <object class="task-img" data="icons/task-aborted-component.svg" type="image/svg+xml" aria-label="藥品任務"></object>
-      <object class="task-img task-divider" data="icons/divider-frame.svg" type="image/svg+xml" aria-label=""></object>
-      <object class="task-img" data="icons/task-active.svg" type="image/svg+xml" aria-label="正在領取藥品"></object>
-      <object class="task-img" data="icons/task-specimen.svg" type="image/svg+xml" aria-label="檢體取送"></object>
-      <object class="task-img" data="icons/task-pending1.svg" type="image/svg+xml" aria-label="藥品配送"></object>
-      <object class="task-img" data="icons/task-pending2.svg" type="image/svg+xml" aria-label="藥品配送"></object>
+  <!-- ==================== 首頁面板 ==================== -->
+  <div class="page-panel active" id="page-home">
+    <header class="sticky-header home-header">
+      <div class="header-row">
+        <h1 class="greeting">👋 Ｈi {護理師名稱}</h1>
+        <div class="header-icons">
+          <img src="icons/header-icon-camera.svg" alt="camera" width="45" height="41">
+          <img src="icons/header-icon-scan.svg" alt="scan" width="40" height="40">
+          <img src="icons/header-icon-msg.svg" alt="messages" width="40" height="40">
+        </div>
+      </div>
+      <div class="quick-actions">
+        <img src="icons/action-medication.svg" alt="藥品配送" width="80" height="98">
+        <img src="icons/action-specimen.svg" alt="檢體取送" width="80" height="98">
+        <img src="icons/action-education.svg" alt="護理衛教" width="80" height="98">
+        <img src="icons/action-environment.svg" alt="環境介紹" width="80" height="98">
+      </div>
+      <div class="section-header">
+        <h2 class="section-title">最近的派工</h2>
+        <a href="#" class="view-all">查看全部</a>
+      </div>
+    </header>
+
+    <div class="scroll-content">
+      <div class="task-list">
+        <object class="task-img" data="icons/task-completed-component.svg" type="image/svg+xml" aria-label="藥品任務"></object>
+        <object class="task-img" data="icons/task-aborted-component.svg" type="image/svg+xml" aria-label="藥品任務"></object>
+        <object class="task-img task-divider" data="icons/divider-frame.svg" type="image/svg+xml" aria-label=""></object>
+        <object class="task-img" data="icons/task-active.svg" type="image/svg+xml" aria-label="正在領取藥品"></object>
+        <object class="task-img" data="icons/task-specimen.svg" type="image/svg+xml" aria-label="檢體取送"></object>
+        <object class="task-img" data="icons/task-pending1.svg" type="image/svg+xml" aria-label="藥品配送"></object>
+        <object class="task-img" data="icons/task-pending2.svg" type="image/svg+xml" aria-label="藥品配送"></object>
+      </div>
     </div>
   </div>
 
+  <!-- ==================== 派工列表面板 ==================== -->
+  <div class="page-panel" id="page-task-list">
+    <header class="sticky-header tasklist-header">
+      <div class="header-bar">
+        <button class="back-btn" aria-label="返回">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="#1F2124" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="header-date">
+          <div class="date-today">今日</div>
+          <div class="date-full">10/31 (四)</div>
+        </div>
+        <button class="forward-btn" aria-label="前进">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18L15 12L9 6" stroke="#1F2124" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="filter-tabs">
+        <button class="tab active">全部(9)</button>
+        <button class="tab">待執行(3)</button>
+        <button class="tab">執行中(3)</button>
+        <button class="tab">已結束(3)</button>
+      </div>
+    </header>
+
+    <div class="scroll-content">
+      <div class="task-list">
+        <div class="shift-section">
+          <div class="shift-header">
+            <span class="shift-icon">☀️</span>
+            <span class="shift-name">白班</span>
+          </div>
+          <div class="shift-desc">你工作時段的派工</div>
+        </div>
+
+        <div class="task-card task-done">
+          <div class="task-top">
+            <span class="task-title">藥品配送</span>
+            <span class="task-source">勤務派工 (系統)</span>
+          </div>
+          <div class="task-bottom">
+            <span class="task-status">於 10:20 結束</span>
+          </div>
+        </div>
+
+        <div class="task-card task-done">
+          <div class="task-top">
+            <span class="task-title">檢體取送</span>
+            <span class="task-source">你派工 (系統)</span>
+          </div>
+          <div class="task-bottom">
+            <span class="task-status">於 10:00 任務終止執行</span>
+          </div>
+        </div>
+
+        <div class="task-card task-active-card">
+          <div class="task-header">
+            <span class="task-title">藥品配送</span>
+            <span class="task-source">勤務派工 (系統)</span>
+          </div>
+          <div class="task-progress-section">
+            <div class="progress-title">正在領取藥品</div>
+            <div class="progress-desc">護理師正在領取藥品</div>
+          </div>
+          <div class="progress-bar-wrapper">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 50%"></div>
+            </div>
+            <div class="progress-locations">
+              <span>護理站</span>
+              <span>A-2</span>
+              <span>護理站</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-card task-active-card">
+          <div class="task-header">
+            <span class="task-title">檢體取送</span>
+            <span class="task-source">你派工 (系統)</span>
+          </div>
+          <div class="task-progress-section">
+            <div class="progress-title">請前往 B-1 區交付檢體</div>
+            <div class="progress-desc">請儘速前來，避免機器人超時離去</div>
+          </div>
+          <div class="progress-bar-wrapper">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 50%"></div>
+            </div>
+            <div class="progress-locations">
+              <span>檢體站</span>
+              <span>B-1</span>
+              <span>檢體站</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="shift-divider">
+          <div class="divider-line"></div>
+          <span class="divider-text">因轉換班別，不執行派工記錄 (4)</span>
+          <div class="divider-line"></div>
+        </div>
+
+        <div class="task-card task-disabled">
+          <div class="task-top">
+            <span class="task-title">環境介紹-帶入病室</span>
+          </div>
+          <div class="task-bottom">
+            <span class="task-status">無法執行派工，請自行執行環境介紹</span>
+          </div>
+        </div>
+
+        <div class="task-card task-disabled">
+          <div class="task-top">
+            <span class="task-title">檢體取送</span>
+          </div>
+          <div class="task-bottom">
+            <span class="task-status">無法執行派工，請自行將檢體送往檢體站</span>
+          </div>
+        </div>
+
+        <div class="task-card task-disabled">
+          <div class="task-top">
+            <span class="task-title">藥品配送</span>
+          </div>
+          <div class="task-bottom">
+            <span class="task-status">無法執行派工，請自行前往護理站領藥</span>
+          </div>
+        </div>
+
+        <div class="task-card task-disabled">
+          <div class="task-top">
+            <span class="task-title">護理衛教</span>
+          </div>
+          <div class="task-bottom">
+            <span class="task-status">無法執行派工，請重新預約衛教</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 共用底部導航 ==================== -->
   <nav class="bottom-nav">
-    <img src="icons/bottom-nav.svg" alt="navigation" width="375" height="100">
+    <div class="nav-item active" data-page="home">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M4 12L16 2L28 12V26C28 27.0609 27.5786 28.0783 26.8284 28.8284C26.0783 29.5786 25.0609 30 24 30H8C6.93913 30 5.92172 29.5786 5.17157 28.8284C4.42143 28.0783 4 27.0609 4 26V12Z" stroke="#999999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 30V18H20V30" stroke="#999999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>首頁</span>
+    </div>
+    <div class="nav-item" data-page="task-list">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect x="4" y="3" width="24" height="27" rx="4" stroke="#999999" stroke-width="2"/>
+        <path d="M9 11H23" stroke="#999999" stroke-width="2" stroke-linecap="round"/>
+        <path d="M9 17H23" stroke="#999999" stroke-width="2" stroke-linecap="round"/>
+        <path d="M9 23H17" stroke="#999999" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span>派工列表</span>
+    </div>
+    <div class="nav-item" data-page="my">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <circle cx="16" cy="10" r="6" stroke="#999999" stroke-width="2"/>
+        <path d="M28 28C28 24.134 24.4183 21 20 21H12C7.58172 21 4 24.134 4 28" stroke="#999999" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span>我的</span>
+    </div>
   </nav>
+
 </div>
 
 <script>
 (function() {
-  var scrollEl = document.querySelector('.scroll-content');
-  var headerEl = document.querySelector('.sticky-header');
-  if (!scrollEl || !headerEl) return;
-  scrollEl.addEventListener('scroll', function() {
-    if (scrollEl.scrollTop > 0) {
-      headerEl.classList.add('scrolled');
-    } else {
-      headerEl.classList.remove('scrolled');
+  var navItems = document.querySelectorAll('.nav-item');
+  var panels = {
+    home: document.getElementById('page-home'),
+    'task-list': document.getElementById('page-task-list')
+  };
+
+  function switchPage(pageName) {
+    Object.keys(panels).forEach(function(key) {
+      if (panels[key]) {
+        panels[key].classList.toggle('active', key === pageName);
+      }
+    });
+
+    navItems.forEach(function(item) {
+      var isActive = item.getAttribute('data-page') === pageName;
+      item.classList.toggle('active', isActive);
+    });
+
+    var scrollEl = document.querySelector('#' + pageName + ' .scroll-content, #page-' + pageName + ' .scroll-content');
+    var activePanel = panels[pageName];
+    if (activePanel) {
+      var scrollContent = activePanel.querySelector('.scroll-content');
+      if (scrollContent) {
+        scrollContent.scrollTop = 0;
+      }
     }
+  }
+
+  navItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      var page = this.getAttribute('data-page');
+      if (page === 'my') return;
+      switchPage(page);
+    });
   });
+
+  var homeScrollEl = document.querySelector('#page-home .scroll-content');
+  var homeHeaderEl = document.querySelector('#page-home .home-header');
+  if (homeScrollEl && homeHeaderEl) {
+    homeScrollEl.addEventListener('scroll', function() {
+      homeHeaderEl.classList.toggle('scrolled', homeScrollEl.scrollTop > 0);
+    });
+  }
+
+  var tasklistScrollEl = document.querySelector('#page-task-list .scroll-content');
+  var tasklistHeaderEl = document.querySelector('#page-task-list .tasklist-header');
+  if (tasklistScrollEl && tasklistHeaderEl) {
+    tasklistScrollEl.addEventListener('scroll', function() {
+      tasklistHeaderEl.classList.toggle('scrolled', tasklistScrollEl.scrollTop > 0);
+    });
+  }
 })();
 </script>
 </body>

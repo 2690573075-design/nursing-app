@@ -400,6 +400,7 @@ html, body {
 .bottom-nav {
   flex-shrink: 0;
   position: relative;
+  line-height: 0;
   padding-bottom: env(safe-area-inset-bottom);
   z-index: 10;
 }
@@ -415,6 +416,7 @@ html, body {
   top: 0;
   bottom: 0;
   width: 33.33%;
+  z-index: 5;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }

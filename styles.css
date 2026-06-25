@@ -212,6 +212,7 @@ html, body {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 .task-list {

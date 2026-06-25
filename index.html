@@ -43,7 +43,7 @@
         <object class="task-img" data="icons/task-completed-component.svg" type="image/svg+xml" aria-label="藥品任務"></object>
         <object class="task-img" data="icons/task-aborted-component.svg" type="image/svg+xml" aria-label="藥品任務"></object>
         <object class="task-img task-divider" data="icons/divider-frame.svg" type="image/svg+xml" aria-label=""></object>
-        <object class="task-img" data="icons/task-active.svg" type="image/svg+xml" aria-label="正在領取藥品"></object>
+        <object id="active-task-card" class="task-img" data="icons/task-active.svg" type="image/svg+xml" aria-label="正在領取藥品"></object>
         <object class="task-img" data="icons/task-specimen.svg" type="image/svg+xml" aria-label="檢體取送"></object>
         <object class="task-img" data="icons/task-pending1.svg" type="image/svg+xml" aria-label="藥品配送"></object>
         <object class="task-img" data="icons/task-pending2.svg" type="image/svg+xml" aria-label="藥品配送"></object>
@@ -211,12 +211,38 @@
   var pageTaskList = document.getElementById('page-task-list');
   var navItems = document.querySelectorAll('.nav-hit-area');
   var navBg = document.querySelector('.nav-bg');
+  var homeScrollEl = pageHome.querySelector('.scroll-content');
+  var activeCard = document.getElementById('active-task-card');
+  var hasScrolledToActive = false;
+
+  function scrollToActiveCard() {
+    if (!activeCard || !homeScrollEl) return;
+    var cardTop = activeCard.offsetTop;
+    var cardHeight = activeCard.offsetHeight;
+    var containerHeight = homeScrollEl.clientHeight;
+    var maxScroll = homeScrollEl.scrollHeight - containerHeight;
+
+    if (containerHeight <= 0) return;
+
+    var ideal = cardTop - (containerHeight / 2) + (cardHeight / 2);
+
+    if (cardHeight > containerHeight) {
+      ideal = cardTop;
+    }
+
+    if (ideal < 0) ideal = 0;
+    if (ideal > maxScroll) ideal = maxScroll;
+
+    homeScrollEl.scrollTo({ top: ideal, behavior: 'smooth' });
+    hasScrolledToActive = true;
+  }
 
   function switchPage(pageName) {
     if (pageName === 'home') {
       pageHome.classList.add('active');
       pageTaskList.classList.remove('active');
       navBg.src = 'icons/bottom-nav.svg';
+      scrollToActiveCard();
     } else if (pageName === 'task-list') {
       pageHome.classList.remove('active');
       pageTaskList.classList.add('active');
@@ -225,7 +251,7 @@
 
     var targetPanel = pageName === 'home' ? pageHome : pageTaskList;
     var scrollContent = targetPanel.querySelector('.scroll-content');
-    if (scrollContent) {
+    if (scrollContent && pageName !== 'home') {
       scrollContent.scrollTop = 0;
     }
   }
@@ -244,7 +270,6 @@
     });
   });
 
-  var homeScrollEl = pageHome.querySelector('.scroll-content');
   var homeHeaderEl = pageHome.querySelector('.home-header');
   if (homeScrollEl && homeHeaderEl) {
     homeScrollEl.addEventListener('scroll', function() {
@@ -259,6 +284,8 @@
       tasklistHeaderEl.classList.toggle('scrolled', tasklistScrollEl.scrollTop > 0);
     });
   }
+
+  setTimeout(scrollToActiveCard, 300);
 })();
 </script>
 </body>

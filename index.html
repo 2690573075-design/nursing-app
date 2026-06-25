@@ -216,14 +216,28 @@
   var hasScrolledToActive = false;
 
   function scrollToActiveCard() {
-    if (!activeCard) return;
+    if (!activeCard || !homeScrollEl) return;
 
-    requestAnimationFrame(function() {
+    function tryScroll(attempt) {
+      if (activeCard.offsetHeight < 10 && attempt < 20) {
+        setTimeout(function() { tryScroll(attempt + 1); }, 100);
+        return;
+      }
+
       requestAnimationFrame(function() {
-        activeCard.scrollIntoView({ block: 'center', behavior: 'smooth' });
-        hasScrolledToActive = true;
+        requestAnimationFrame(function() {
+          var cardRect = activeCard.getBoundingClientRect();
+          var containerRect = homeScrollEl.getBoundingClientRect();
+          var cardCenter = cardRect.top + cardRect.height / 2;
+          var containerCenter = containerRect.top + containerRect.height / 2;
+          var offsetY = cardCenter - containerCenter;
+          homeScrollEl.scrollBy({ top: offsetY, behavior: 'smooth' });
+          hasScrolledToActive = true;
+        });
       });
-    });
+    }
+
+    tryScroll(0);
   }
 
   function switchPage(pageName) {
